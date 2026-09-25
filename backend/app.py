@@ -8,14 +8,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-@app.route("/register-page")
-def register_page():
-    return send_from_directory("../frontend", "register.html")
-
-@app.route("/js/register.js")
-def register_js():
-    return send_from_directory("../frontend/js", "register.js")
-
 db = mysql.connector.connect(
     host=os.getenv("DB_HOST"),
     user=os.getenv("DB_USER"),
@@ -29,6 +21,16 @@ print("MySQL connected successfully!")
 @app.route("/")
 def home():
     return "Diabetes Risk Prediction API is running!"
+
+
+@app.route("/register-page")
+def register_page():
+    return send_from_directory("../frontend", "register.html")
+
+
+@app.route("/js/register.js")
+def register_js():
+    return send_from_directory("../frontend/js", "register.js")
 
 
 @app.route("/register", methods=["POST"])
@@ -56,6 +58,7 @@ def register():
     cursor.close()
 
     return jsonify({"message": "Registration successful"}), 201
+
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -88,6 +91,7 @@ def login():
         "user_id": user_id,
         "name": name
     }), 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
