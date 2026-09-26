@@ -30,7 +30,10 @@ def register_page():
 
 @app.route("/js/register.js")
 def register_js():
-    return send_from_directory("../frontend/js", "register.js")
+    return send_from_directory(
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "js"),
+        "register.js"
+    )
 
 
 @app.route("/register", methods=["POST"])
