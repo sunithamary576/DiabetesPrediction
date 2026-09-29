@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Diabetes Risk Prediction</title>
+</head>
+
+<body>
+
+    <h1>Diabetes Risk Prediction</h1>
+
+    <form id="predictionForm">
+
+        <!-- High Blood Pressure -->
+        <label>High Blood Pressure:</label>
+        <select id="HighBP" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- High Cholesterol -->
+        <label>High Cholesterol:</label>
+        <select id="HighChol" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Cholesterol Check -->
+        <label>Cholesterol Check:</label>
+        <select id="CholCheck" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- BMI -->
+        <label>BMI:</label>
+        <input
+            type="number"
+            id="BMI"
+            min="1"
+            max="100"
+            required
+        >
+
+        <br><br>
+
+        <!-- Smoker -->
+        <label>Smoker:</label>
+        <select id="Smoker" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Stroke -->
+        <label>Stroke:</label>
+        <select id="Stroke" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Heart Disease -->
+        <label>Heart Disease or Heart Attack:</label>
+        <select id="HeartDiseaseorAttack" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Physical Activity -->
+        <label>Physical Activity:</label>
+        <select id="PhysActivity" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Fruits -->
+        <label>Fruit Consumption:</label>
+        <select id="Fruits" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Vegetables -->
+        <label>Vegetable Consumption:</label>
+        <select id="Veggies" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Heavy Alcohol -->
+        <label>Heavy Alcohol Consumption:</label>
+        <select id="HvyAlcoholConsump" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Healthcare -->
+        <label>Healthcare Coverage:</label>
+        <select id="AnyHealthcare" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Doctor Cost -->
+        <label>Could Not See Doctor Due to Cost:</label>
+        <select id="NoDocbcCost" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- General Health -->
+        <label>General Health (1-5):</label>
+        <input
+            type="number"
+            id="GenHlth"
+            min="1"
+            max="5"
+            required
+        >
+
+        <br><br>
+
+        <!-- Mental Health -->
+        <label>Mental Health Days (0-30):</label>
+        <input
+            type="number"
+            id="MentHlth"
+            min="0"
+            max="30"
+            required
+        >
+
+        <br><br>
+
+        <!-- Physical Health -->
+        <label>Physical Health Days (0-30):</label>
+        <input
+            type="number"
+            id="PhysHlth"
+            min="0"
+            max="30"
+            required
+        >
+
+        <br><br>
+
+        <!-- Difficulty Walking -->
+        <label>Difficulty Walking:</label>
+        <select id="DiffWalk" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+
+        <!-- Sex -->
+        <label>Sex:</label>
+        <select id="Sex" required>
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+
+        <br><br>
+
+        <!-- Age -->
+        <label>Age Category (1-13):</label>
+        <input
+            type="number"
+            id="Age"
+            min="1"
+            max="13"
+            required
+        >
+
+        <br><br>
+
+        <!-- Education -->
+        <label>Education Level (1-6):</label>
+        <input
+            type="number"
+            id="Education"
+            min="1"
+            max="6"
+            required
+        >
+
+        <br><br>
+
+        <!-- Income -->
+        <label>Income Level (1-8):</label>
+        <input
+            type="number"
+            id="Income"
+            min="1"
+            max="8"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">Predict</button>
+
+    </form>
+
+    <p id="message"></p>
+
+    <script src="/predict.js"></script>
+
+</body>
+
+</html>

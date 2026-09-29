@@ -1,10 +1,15 @@
 from flask import Flask, request, jsonify, send_from_directory
+import joblib
 import mysql.connector
 import os
 from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
 
 load_dotenv()
+
+model = joblib.load(
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), "models", "model.pkl")
+)
 
 app = Flask(__name__)
 
@@ -27,11 +32,31 @@ def home():
 def register_page():
     return send_from_directory("../frontend", "register.html")
 
+@app.route("/login-page")
+def login_page():
+    return send_from_directory(
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend"),
+        "login.html"
+    )
 
-@app.route("/js/register.js")
+@app.route("/predict-page")
+def predict_page():
+    return send_from_directory(
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend"),
+        "predict.html"
+    )
+
+@app.route("/login.js")
+def login_js():
+    return send_from_directory(
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend"),
+        "login.js"
+    )
+
+@app.route("/register.js")
 def register_js():
     return send_from_directory(
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "js"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend"),
         "register.js"
     )
 
@@ -95,6 +120,39 @@ def login():
         "name": name
     }), 200
 
+@app.route("/predict", methods=["POST"])
+def predict():
+    data = request.get_json()
+
+    features = [
+        data["HighBP"],
+        data["HighChol"],
+        data["CholCheck"],
+        data["BMI"],
+        data["Smoker"],
+        data["Stroke"],
+        data["HeartDiseaseorAttack"],
+        data["PhysActivity"],
+        data["Fruits"],
+        data["Veggies"],
+        data["HvyAlcoholConsump"],
+        data["AnyHealthcare"],
+        data["NoDocbcCost"],
+        data["GenHlth"],
+        data["MentHlth"],
+        data["PhysHlth"],
+        data["DiffWalk"],
+        data["Sex"],
+        data["Age"],
+        data["Education"],
+        data["Income"]
+    ]
+
+    prediction = model.predict([features])[0]
+
+    return jsonify({
+        "prediction": int(prediction)
+    })
 
 if __name__ == "__main__":
     app.run(debug=True)
