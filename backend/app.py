@@ -53,6 +53,13 @@ def login_js():
         "login.js"
     )
 
+@app.route("/predict.js")
+def predict_js():
+    return send_from_directory(
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend"),
+        "predict.js"
+    )
+
 @app.route("/register.js")
 def register_js():
     return send_from_directory(
